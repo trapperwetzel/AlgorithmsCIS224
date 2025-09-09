@@ -1,0 +1,32 @@
+
+
+even_sum (a) 
+Big O Notation: O(n)
+This is because it loops over array, yes it is checking for evens but we drop constants.
+
+odd_sum (b)
+Big O Notation: O(n)
+Same reason as even_sum. The small differences in these functions doesn't change how we evaluate the algorithm. 
+
+strange_sum (c) 
+Big O Notation: O(n)
+Though this is just a single function call, it calls both of the above functions which are O(n).
+We drop the constants, leaving once again O(n)
+
+wacky_sum (d) 
+Big O Notation: O(n^2)
+We call the even_sum function inside a loop, doing O(n) n times... O(n * n) = O(n^2)
+
+distinct_2sets (e)
+Big O Notation: O(n^2)
+Nested loops means we loop over both A and B in the worse case. Leaving it to be O(n^2)
+
+distinct_3sets_opt1 (f)
+Big O Notation: O(n^3)
+This is very similar reasoning to (e). This time we have a triple nested loop, which causes it to be O(n^3). 
+
+distinct_3sets_opt2 (g) 
+Big O Notation: O(n^3)
+Same as the above, but can trick some people because of the if statements.
+This is still O(n^3) because in the WORST case situation, it hits all the for loops. 
+

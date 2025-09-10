@@ -1,0 +1,75 @@
+CIS 223 Algorithms Day 1
+Monday, August 25, 2025
+
+
+
+If we want to know how fast an algorithm runs, we could run it and time it.
+This is called experiemntal analysis: but there is a few limitations.
+
+1. Different software/hardware will make it difficult to compare two different algorithms.
+2. Experiments can only be run on a finite input set.
+3. The algorithms must be completed.
+    - can't test partial algorithms
+
+It needs to be more precise.
+
+
+
+Defintion: A primitive operation corresponds to a low-level instruction with a constant execution time.
+    Ex: 
+        1. Assigning an identifier to an object.
+        2. arithmetic operations
+        3. comparing numbers
+        4. calling a function
+        5. returning a function
+
+
+X = 7  <--- this is a primitive operation
+
+Algorithm running at constant time, is the best case scenerio. 
+
+Really we are categorizing the solutions/runtimes by how they grow.
+
+**IMPORTANT** 
+Big O Notation
+
+Big O Notation showcases AT WORST how the function grows... Keyword, how it grows.
+In other terms-- Big O measures how an algorithm grows based on input. 
+
+When comparing two algorithms; we really just care about the long term behavior, how it grows, etc.
+
+
+
+Big O def (equation)
+
+Let f(n) and g(n) be two functions.
+We say that f(n) is O(g(n)) if there exists C > 0 and n₀ (a starting point) such that: 
+
+f(n) <= c * g(n) for all n>=n₀
+
+
+In my own words:
+
+Let f(n) be one function, and g(n) be another function. 
+We can say f(n) will grow no faster than g(n)-- it is in the same Big O notation "class" per say.
+
+An example
+
+If I were to prove that 8n+5 is O(n):
+
+    f(n) = 8n+5
+    g(n) = n
+
+
+
+
+
+
+
+
+
+
+
+
+
+

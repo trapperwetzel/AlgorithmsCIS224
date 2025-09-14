@@ -8,24 +8,20 @@
 
 const greedychange = (amount, coins) => {
 
-  // first sort the coins from highest to lowest 
-  const sortedCoins = [...coins].sort((a,b)=> b - a);
-
-  answer = {};
-
+  const sortedCoins = [...coins].sort((a,b) => b - a);
+  const answer = {};
   for(const coin of sortedCoins){
-    
     if(amount >= coin){
-      count = Math.floor( amount / coin);
+      const count = Math.floor( amount / coin );
       answer[coin] = count;
-      amount -= (coin * count);
+      amount -= coin * count; 
     }
-
   }
 
   return answer; 
 
 }
+
 
 
 const testarr = [3,7,8,12]

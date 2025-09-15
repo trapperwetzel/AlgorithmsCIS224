@@ -7,7 +7,10 @@ const insertionsort = (numbers) => {
     for(let i = 1; i < numbers.length; i++){
         for(let j = i; j > 0; j--){
             if(numbers[j] < numbers[j-1]){
-                [numbers[j],numbers[j-1]] = [numbers[j-1], numbers[j]] //swap
+                const temp = numbers[j];
+                numbers[j] = numbers[j-1];
+                numbers[j-1] = temp;
+                // [numbers[j],numbers[j-1]] = [numbers[j-1], numbers[j]] //swap
             } else {
                 break;
             }

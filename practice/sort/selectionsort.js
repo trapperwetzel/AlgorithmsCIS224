@@ -8,6 +8,7 @@ const selectionsort = (nums) => {
                 minIndex = j;
             }
         }
+        //swap
         [nums[i], nums[minIndex]] = [nums[minIndex], nums[i]];
     }
     return nums;

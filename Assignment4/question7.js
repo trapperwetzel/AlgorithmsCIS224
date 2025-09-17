@@ -17,7 +17,7 @@ const quicksort = (numbers) => {
 
         let a = array[choice1], b = array[choice2], c = array[choice3];
 
-        // This gives us the median value
+        // This gives us the median value which optimizes quick sort.
         if ((a > b) !== (a > c)) return a;
         else if ((b > a) !== (b > c)) return b;
         else return c;
@@ -38,7 +38,7 @@ const quicksort = (numbers) => {
             equal.push(number);
         }
     }
-
+    
     return [...quicksort(left), ...equal, ...quicksort(right)];
 }
 const example1 = [10,2,7,3,9,14,1,5];

@@ -38,8 +38,7 @@ class SortingAlgorithms{
 
   insertionsort = (nums) => {
     console.log("Insertion Sort")
-    // note that insertion sort starts with i at 1 and j = i
-    // this is because we know that the first element in the array is already sorted.
+    
     
     for(let i = 1; i < nums.length; i++){
       for(let j = i; j > 0; j--){
@@ -107,6 +106,7 @@ class SortingAlgorithms{
 
 
 const test = new SortingAlgorithms();
+
 console.log("----------------");
 console.log("----------------\n", test.bubblesort(test.array));
 console.log("----------------");
@@ -117,3 +117,5 @@ console.log("----------------\nMerge Sort");
 console.log("----------------\n",test.mergesort(test.array));
 console.log("----------------\nQuick Sort");
 console.log("----------------\n",test.quicksort(test.array));
+
+export default SortingAlgorithms;

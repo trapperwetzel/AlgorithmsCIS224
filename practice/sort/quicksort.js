@@ -1,15 +1,14 @@
-
-const quicksort = (numbers) => {
-    if(numbers.length <= 1) {
-        return numbers
+const quicksort = (nums) => {
+    if(nums.length <= 1){
+        return nums;
     }
-
-    const pivot = numbers[Math.floor(numbers.length / 2)];
+    const mid = Math.floor(nums.length / 2);
+    const pivot = nums[mid];
     const left = [];
     const right = [];
     const equal = [];
 
-    for(let number of numbers){
+    for(let number of nums){
         if(number < pivot){
             left.push(number);
         } else if(number > pivot){
@@ -17,14 +16,19 @@ const quicksort = (numbers) => {
         } else {
             equal.push(number);
         }
+
     }
 
-    return [...quicksort(left), ...equal, ...quicksort(right)];
-    
+    return [...quicksort(left),...equal,...quicksort(right)];
 }
 
-const example1 = [10,2,7,3,9,14,1,5];
-const example2 = [38, 77, 12, 45, 66, 54, 68, 42, 93, 51, 20, 74, 72, 83, 49, 63, 85, 60, 55, 34, 33, 6];
-
+const example1 = [9,1,4,3,8,5,2,7,10,6];
 console.log(quicksort(example1));
-console.log(quicksort(example2));
+const quicksort2 = (nums1, nums2) => {
+    const fullArray = [...nums1,...nums2]
+    return [...quicksort(fullArray)];
+}
+
+const example2 = [9,1,4,3,8,5,2,7,10,6,3,55,66,77,7777];
+const example3 = [9,1,4,3,8,5,2,7,10,666,420,321,123];
+console.log(quicksort2(example2,example3));

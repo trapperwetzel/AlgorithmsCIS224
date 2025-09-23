@@ -1,18 +1,15 @@
 
-// given an unsorted array, use bubble sort to return a sorted array 
-
-const bubblesort = (numbers) => {
-
-    for(let i = 0; i < numbers.length - 1; i++){
-        for(let j = 0; j < numbers.length -1; j++){
-            if(numbers[j] > numbers[j+1]){
-                const temp = numbers[j];
-                numbers[j] = numbers[j+1];
-                numbers[j+1] = temp;
+const bubblesort = (nums) => {
+    for(let i = 0; i <= nums.length; i++){
+        for(let j = 0; j <= nums.length; j++){
+            if(nums[j] > nums[j+1]){
+                const temp = nums[j];
+                nums[j] = nums[j+1];
+                nums[j+1] = temp;
             }
         }
     }
-    return numbers;
+    return nums;
 }
 
 

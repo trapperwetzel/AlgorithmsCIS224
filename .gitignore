@@ -1,1 +1,23 @@
 /Notes
+# Dependencies (if you ever npm install something)
+node_modules/
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Build output (if you compile TS to JS)
+dist/
+out/
+build/
+
+# Environment files (if you ever test with configs)
+.env
+*.local.json
+
+# IDE/editor stuff
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+*.json

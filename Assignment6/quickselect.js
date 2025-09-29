@@ -22,6 +22,9 @@ function findKLargest(arr, k) {
   return result;
 }
 
+
+
+
 // O(n) solution using quick select 
 function quickselect(arr, k) {
   if (arr.length === 0) {
@@ -46,14 +49,33 @@ function quickselect(arr, k) {
 }
 
 
+function distinctquickselect(arr, k) {
+
+  let randomIndex = Math.floor(Math.random() * arr.length);
+  let pivot = arr[randomIndex];
+
+  let less = arr.filter(num => num < pivot);
+  let more = arr.filter(num => num > pivot);
+
+  if (k <= more.length) {
+    return distinctquickselect(more, k);
+  } else if (k === more.length + 1) {
+    return pivot;
+  } else {
+    let j = k - more.length - 1;
+    return distinctquickselect(less, j);
+  }
+
+}
 
 
-
-
+const distinctTest = [1, 5, 9, 4, 10, 2];
+console.log(distinctquickselect(distinctTest, 2));
 
 
 
 const test = [1, 1, 5, 5, 5, 32, 9, 9, 9, 9, 3, 4, 12, 11, 55, 45, 22];
+console.log(distinctquickselect(test, 2));
 console.log(findKLargestO2(test, 2));
 console.log(findKLargest(test, 2));
 console.log(quickselect(test, 2));

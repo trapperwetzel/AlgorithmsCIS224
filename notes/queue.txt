@@ -1,0 +1,15 @@
+A queue is a collection of objects inserted and removed according to First-In-First out principle. 
+
+The queue abstract data type supports: 
+
+    enqueue(e) 
+
+    dequeue() 
+
+    first() 
+
+    is_empty() 
+
+    len(s) 
+
+

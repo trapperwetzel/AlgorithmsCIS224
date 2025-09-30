@@ -1,4 +1,3 @@
-
 import ctypes
 
 class DynamicArray:
@@ -19,7 +18,7 @@ class DynamicArray:
             doubledArray[i] = self.array[i]
 
         self.array = doubledArray
-        self.capacity = doubledCapacity
+        self.capacity = doubledCapacity 
     def append(self, element):
         """
         Add element to end of the array.

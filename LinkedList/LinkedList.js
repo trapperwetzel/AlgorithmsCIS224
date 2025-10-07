@@ -1,9 +1,9 @@
 
 class Node {
-  constructor(element) {
+  constructor(element, prev = null, next = null) {
     this.element = element;
-    this.prev = null;
-    this.next = null;
+    this.prev = prev,
+      this.next = next;
   }
   getNodeElement() {
     return this.element;
@@ -27,6 +27,7 @@ class LinkedList {
     this.trailer.next = node;
     node.prev = this.trailer;
     this.trailer = node;
+    this.elementCount += 1;
   }
 
 }
@@ -36,11 +37,12 @@ const node3 = new Node(3);
 
 const myLinkedList = new LinkedList(node1);
 
-console.log(node1);
 
 myLinkedList.addNode(node2);
 
-console.log(node1);
 console.log(node2);
 console.log(node2.prev);
-
+myLinkedList.addNode(node3);
+console.log(node2.next);
+console.log("Trailer:");
+console.log(myLinkedList.trailer);

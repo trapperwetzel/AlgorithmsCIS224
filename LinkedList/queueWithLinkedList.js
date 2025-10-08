@@ -30,6 +30,20 @@ class LinkedQueue {
     return removedElement;
   }
 
+  getFirstNode() {
+    return this.head;
+  }
+
+  getFirstElement() {
+    return this.head.element;
+  }
+  getLength() {
+    return this.size;
+  }
+  isEmpty() {
+    return this.size === 0;
+  }
+
   getAllElements() {
     let dummyNode = new Node(-Infinity, null, this.head);
     while (dummyNode.next) {
@@ -47,5 +61,4 @@ linkedList.enqueue(node3);
 linkedList.enqueue(node4);
 linkedList.enqueue(node5);
 linkedList.getAllElements();
-
 

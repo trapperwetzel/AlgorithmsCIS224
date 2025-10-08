@@ -42,4 +42,3 @@ while (fast && fast.next) {
 console.log(slow.value);
 
 
-

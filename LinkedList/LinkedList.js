@@ -29,6 +29,19 @@ class LinkedList {
     this.trailer = node;
     this.elementCount += 1;
   }
+  removeNodeByElement(elementToRemove) {
+
+    let dummyNode = this.head;
+    while (dummyNode) {
+      if (dummyNode.val == elementToRemove) {
+
+
+
+      }
+    }
+
+
+  }
 
 }
 const node1 = new Node(4);

@@ -1,12 +1,14 @@
 
+class BSTNode<K, V> {
 
-class Node<T> {
+  key: K;
+  value: V;
+  parent?: BSTNode<K, V>;
+  leftNode?: BSTNode<K, V>;
+  rightNode?: BSTNode<K, V>;
 
-  value: T;
-  leftNode?: Node<T>;
-  rightNode?: Node<T>;
-
-  constructor(value: T) {
+  constructor(key: K, value: V) {
+    this.key = key;
     this.value = value;
   }
 
@@ -16,122 +18,102 @@ class Node<T> {
   }
 }
 
-const numberNode = new Node<number>(1);
-const stringNode = new Node<string>("This is the string node");
-const numberNode2 = new Node<number>(2);
-const stringNode2 = new Node<string>("This is string node 2");
-numberNode.rightNode = numberNode2;
-stringNode.rightNode = stringNode2;
+class BinarySearchTree<K, V> {
 
-class SimpleBinaryTree<T> {
-  root?: Node<T>;
+  root?: BSTNode<K, V>;
 
+  /*
+  * INSERT
+  * METHODS
+  */
+  insert(key: K, value: V) {
 
-  insert(value: T): void {
-    if (!this.root) {
-      this.root = new Node<T>(value);
+    if (this.isEmpty()) {
+      this.addRoot(key, value)
+    }
+    else {
+      this._insert(key, value, this.root!);
+    }
+  }
+  // insert helper function 
+  _insert(key: K, value: V, node: BSTNode<K, V>) {
+    if (key > node.key) {
+      !node.rightNode ? node.rightNode = new BSTNode(key, value) : this._insert(key, value, node.rightNode);
+    } else if (key < node.key) {
+      !node.leftNode ? node.leftNode = new BSTNode(key, value) : this._insert(key, value, node.leftNode);
     } else {
-      this.insertHelper(value, this.root);
+      throw new Error("node is already in the tree")
     }
   }
 
-  insertHelper(value: T, node: Node<T>): void {
-    if (value < node.value) {
-      // left logic
-      !node.leftNode ? node.leftNode = new Node<T>(value) : this.insertHelper(value, node.leftNode);
-    } else if (value > node.value) {
-      // right logic
-      !node.rightNode ? node.rightNode = new Node<T>(value) : this.insertHelper(value, node.rightNode);
+  private addRoot(key: K, value: V) {
+    if (!this.isEmpty()) {
+      throw new Error("Tree is not empty");
     } else {
-      throw new Error("value is already in the tree!");
+      this.root = new BSTNode(key, value);
+    }
+
+  }
+  /*
+   * SEARCH 
+   * METHODS 
+  */
+
+  search(key: K) {
+    // error handling if tree is empty 
+    if (this.isEmpty()) {
+      throw new Error("tree is empty");
+    } else {
+      this._search(key, this.root!)
     }
   }
 
-  search(value: T) {
-    if (!this.root) {
-      throw new Error("No nodes are inside the tree");
-    } else {
-      return this.searchHelper(value, this.root);
-    }
-  }
+  private _search(key: K, node: BSTNode<K, V>) {
 
-  searchHelper(value: T, node: Node<T>): Node<T> {
-    if (value == node.value) {
+    if (key === node.key) {
+      console.log("found node!")
       return node;
-    } else if (value < node.value && node.leftNode) {
-      return this.searchHelper(value, node.leftNode);
-    } else if (value > node.value && node.rightNode) {
-      return this.searchHelper(value, node.rightNode);
     } else {
-      throw new Error("Can not find node inside tree");
-    }
-  }
-
-  preOrderTraversal(): void {
-    const preOrderHelper = (helperNode?: Node<T>) => {
-      if (helperNode) {
-        helperNode.printValue();
-        preOrderHelper(helperNode.leftNode)
-        preOrderHelper(helperNode.rightNode);
+      if (key > node.key && node.rightNode) {
+        this._search(key, node.rightNode);
+      } else if (key < node.key && node.leftNode) {
+        this._search(key, node.leftNode);
       }
     }
+  }
+
+  //////////////////////////////
+  right(v: BSTNode<K, V>) {
+    return v.rightNode;
+  }
+
+  left(v: BSTNode<K, V>) {
+    return v.leftNode;
+  }
+
+  getRoot() {
+    if (this.isEmpty()) {
+      throw new Error("tree is empty");
+    } else {
+      return this.root;
+    }
+  }
+
+  isEmpty() {
     if (this.root) {
-      preOrderHelper(this.root);
+      return false;
+    } else {
+      return true;
     }
   }
 
-  postOrderTraversal(): void {
-    const postOrderHelper = (helperNode?: Node<T>) => {
-      if (!helperNode) { return; }
-      postOrderHelper(helperNode.leftNode)
-      postOrderHelper(helperNode.rightNode);
-      helperNode.printValue();
-    }
-    if (this.root) {
-      postOrderHelper(this.root);
-    }
-  }
 
-  lvs(target: T) {
-    let currentNode = this.root;
-    let candidateNode;
-
-    while (currentNode) {
-      if (currentNode.value < target) {
-        candidateNode = currentNode.value;
-        currentNode = currentNode.rightNode;
-      } else {
-        currentNode = currentNode.leftNode;
-      }
-    }
-    return candidateNode;
-  }
 
 }
 
-
-
-
-
-
-const testTree = new SimpleBinaryTree<number>();
-testTree.insert(25);
-testTree.insert(10);
-testTree.insert(33);
-testTree.insert(27);
-testTree.insert(5);
-testTree.insert(13);
-testTree.insert(45);
-const findNode33 = testTree.search(33);
-const findNode10 = testTree.search(10);
-console.log("find node 33: ", findNode33);
-console.log("find node 10: ", findNode10);
-console.log("preOrderTraversal");
-testTree.preOrderTraversal();
-console.log("postOrderTraversal");
-testTree.postOrderTraversal();
-const testnum = testTree.lvs(25);
-console.log("NUMBER:", testnum);
-
-
-
+const tree = new BinarySearchTree<number, string>()
+tree.insert(3, "C");
+console.log(tree.getRoot());
+tree.insert(5, "D");
+tree.insert(1, "A");
+tree.search(1);

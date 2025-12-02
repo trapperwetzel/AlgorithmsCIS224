@@ -11,7 +11,8 @@ export class Graph<T> {
   private _edges: GraphEdge<T>[] = [];
 
 
-  add_node(): void {
+  add_node(nodeToAdd: GraphNode<T>): void {
+    this._nodes.push(nodeToAdd)
     return
   }
   remove_node(): GraphNode<T> | void {
@@ -31,10 +32,11 @@ export class Graph<T> {
       Point1: node1,
       Point2: node2
     }
-    if (this._edges.includes(tempEdge)) {
-      return true;
-    } else {
-      return false;
+    for (const edge of this._edges) {
+      if (edge.Point1 == tempEdge.Point1 && edge.Point2 == tempEdge.Point2) {
+        console.log(node1, node2, "Is an edge!");
+        return true;
+      }
     }
   }
 

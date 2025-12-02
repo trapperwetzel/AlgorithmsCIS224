@@ -14,5 +14,5 @@ const testEdge: GraphEdge<string> = {
 }
 const testGraph: Graph<string> = new Graph<string>();
 testGraph.add_edge(testEdge);
-testGraph.printEdges();
+testGraph.adjacent(pointA, pointB);
 

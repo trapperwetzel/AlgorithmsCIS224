@@ -44,6 +44,14 @@ export class Graph<T> {
       this.add_node(edgeToAdd.Point2);
     }
 
+    if (!edgeToAdd.Point1.neighbors.includes(edgeToAdd.Point2)) {
+      edgeToAdd.Point1.neighbors.push(edgeToAdd.Point2);
+    }
+    if (!edgeToAdd.Point2.neighbors.includes(edgeToAdd.Point1)) {
+      edgeToAdd.Point2.neighbors.push(edgeToAdd.Point1);
+    }
+
+
     this._edges.push(edgeToAdd)
   }
 

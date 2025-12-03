@@ -76,18 +76,17 @@ export class Graph<T> {
   #######################
   */
   printEdges() {
+    console.log("Printing all edges");
+    console.log("--------------------------------------------------------")
     this._edges.forEach(edge => {
-      console.log("--------------------------------------------------------")
-      console.log("Edge:", edge)
+      console.log(edge.Point1.value, "--->", edge.Point2.value);
       console.log("--------------------------------------------------------")
     })
   }
 
   printNodes() {
     this._nodes.forEach(node => {
-      console.log("--------------------------------------------------------")
       console.log("node:", node)
-      console.log("--------------------------------------------------------")
     })
   }
 }

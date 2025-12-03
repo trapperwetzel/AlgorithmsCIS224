@@ -119,8 +119,6 @@ export class Graph<T> {
     return createdNode;
   }
   makeEdge(point1: GraphNode<T>, point2: GraphNode<T>) {
-    point1.neighbors.push(point2);
-    point2.neighbors.push(point1);
     const createdEdge: GraphEdge<T> = {
       Point1: point1,
       Point2: point2

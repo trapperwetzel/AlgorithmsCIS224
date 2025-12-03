@@ -13,10 +13,23 @@ export class Graph<T> {
 
 
   add_node(nodeToAdd: GraphNode<T>): void {
-    this._nodes.push(nodeToAdd)
+    if (!this._nodes.includes(nodeToAdd)) {
+      this._nodes.push(nodeToAdd)
+    } else {
+      throw new Error("Node already added!");
+    }
     return
   }
-  remove_node(): GraphNode<T> | void {
+  remove_node(nodeToRemove: GraphNode<T>): GraphNode<T> | void {
+    const nodeIndex = this._nodes.indexOf(nodeToRemove);
+    if (nodeIndex === -1) { return; }
+    this._nodes.splice(nodeIndex, 1);
+
+    for (const n of this._nodes) {
+      n.neighbors = n.neighbors.filter(node => node != nodeToRemove);
+    }
+
+    this._edges = this._edges.filter(edge => edge.Point1 != nodeToRemove && edge.Point2 != nodeToRemove)
     return
   }
 
@@ -34,8 +47,10 @@ export class Graph<T> {
     this._edges.push(edgeToAdd)
   }
 
-  remove_edge(): GraphNode<T> | void {
-    return;
+  remove_edge(edgeToRemove: GraphEdge<T>): GraphNode<T> | void {
+    const edgeIndex = this._edges.indexOf(edgeToRemove);
+    if (edgeIndex === -1) { return; }
+    this._edges.splice(edgeIndex, 1);
   }
 
 

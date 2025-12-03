@@ -1,5 +1,6 @@
 export type GraphNode<T> = {
   value: T,
+  neighbors: GraphNode<T>[];
 }
 export type GraphEdge<T> = {
   Point1: GraphNode<T>,
@@ -50,6 +51,34 @@ export class Graph<T> {
       }
     }
   }
+  /* Search methods 
+  DFS
+  BFS
+  */
+  depthFirstSearch(startNode: GraphNode<T>): void {
+    const visitedNodes: GraphNode<T>[] = [];
+
+    const dfsHelper = (helperNode: GraphNode<T>) => {
+      if (visitedNodes.includes(helperNode)) { return; }
+      else {
+        console.log("--------------------------------")
+        console.log("Visiting: ", helperNode.value);
+        console.log("--------------------------------")
+        visitedNodes.push(helperNode);
+      }
+
+      for (const neighbor of helperNode.neighbors) {
+        dfsHelper(neighbor)
+      }
+
+    }
+
+    dfsHelper(startNode);
+
+  }
+
+
+
   /*
   node factory
   edge factory 
@@ -57,11 +86,14 @@ export class Graph<T> {
   */
   makeNode(node: T) {
     const createdNode: GraphNode<T> = {
-      value: node
+      value: node,
+      neighbors: [],
     }
     return createdNode;
   }
   makeEdge(point1: GraphNode<T>, point2: GraphNode<T>) {
+    point1.neighbors.push(point2);
+    point2.neighbors.push(point1);
     const createdEdge: GraphEdge<T> = {
       Point1: point1,
       Point2: point2
@@ -86,7 +118,7 @@ export class Graph<T> {
 
   printNodes() {
     this._nodes.forEach(node => {
-      console.log("node:", node)
+      console.log("node:", node.value)
     })
   }
 }

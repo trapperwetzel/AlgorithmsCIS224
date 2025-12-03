@@ -1,6 +1,7 @@
 import type { GraphNode, GraphEdge } from "./Graph.ts";
 import { Graph } from "./Graph.ts";
 
+const testGraph: Graph<string> = new Graph<string>();
 
 const pointA: GraphNode<string> = {
   value: "A"
@@ -8,11 +9,24 @@ const pointA: GraphNode<string> = {
 const pointB: GraphNode<string> = {
   value: "B"
 }
-const testEdge: GraphEdge<string> = {
-  Point1: pointA,
-  Point2: pointB
+const pointC: GraphNode<string> = {
+  value: "C"
 }
-const testGraph: Graph<string> = new Graph<string>();
-testGraph.add_edge(testEdge);
-testGraph.adjacent(pointA, pointB);
+const pointD: GraphNode<string> = {
+  value: "D"
+}
+const edge1: GraphEdge<string> = testGraph.make_edge(pointA, pointB);
+const edge2: GraphEdge<string> = testGraph.make_edge(pointC, pointD);
+const edge3: GraphEdge<string> = testGraph.make_edge(pointA, pointC);
+
+
+testGraph.add_edge(edge1);
+testGraph.add_edge(edge2);
+testGraph.add_edge(edge3);
+
+testGraph.printNodes();
+testGraph.printEdges();
+
+
+
 

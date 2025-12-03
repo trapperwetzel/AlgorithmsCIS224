@@ -19,13 +19,24 @@ export class Graph<T> {
     return
   }
 
+
   add_edge(edgeToAdd: GraphEdge<T>): void {
+
+    if (!this._nodes.includes(edgeToAdd.Point1)) {
+      this.add_node(edgeToAdd.Point1)
+    }
+
+    if (!this._nodes.includes(edgeToAdd.Point2)) {
+      this.add_node(edgeToAdd.Point2);
+    }
+
     this._edges.push(edgeToAdd)
   }
 
   remove_edge(): GraphNode<T> | void {
     return;
   }
+
 
   adjacent(node1: GraphNode<T>, node2: GraphNode<T>) {
     const tempEdge: GraphEdge<T> = {
@@ -39,7 +50,25 @@ export class Graph<T> {
       }
     }
   }
+  /*
+  node factory
+  edge factory 
+  methods to make creating nodes and edges easier 
+  */
+  make_edge(point1: GraphNode<T>, point2: GraphNode<T>) {
+    const createdEdge: GraphEdge<T> = {
+      Point1: point1,
+      Point2: point2
+    }
+    return createdEdge;
+  }
 
+
+  /*
+  #######################
+       PRINT HELPERS
+  #######################
+  */
   printEdges() {
     this._edges.forEach(edge => {
       console.log("--------------------------------------------------------")
@@ -47,6 +76,15 @@ export class Graph<T> {
       console.log("--------------------------------------------------------")
     })
   }
+
+  printNodes() {
+    this._nodes.forEach(node => {
+      console.log("--------------------------------------------------------")
+      console.log("node:", node)
+      console.log("--------------------------------------------------------")
+    })
+  }
 }
+
 
 

@@ -51,6 +51,10 @@ export class Graph<T> {
     const edgeIndex = this._edges.indexOf(edgeToRemove);
     if (edgeIndex === -1) { return; }
     this._edges.splice(edgeIndex, 1);
+
+    edgeToRemove.Point1.neighbors = edgeToRemove.Point1.neighbors.filter(node => node != edgeToRemove.Point2)
+    edgeToRemove.Point2.neighbors = edgeToRemove.Point2.neighbors.filter(node => node != edgeToRemove.Point1)
+
   }
 
 

@@ -22,8 +22,12 @@ testGraph.add_edge(edge4);
 testGraph.printNodes();
 testGraph.printEdges();
 
-testGraph.depthFirstSearch(pointA);
+//testGraph.depthFirstSearch(pointA);
 
+testGraph.remove_edge(edge4);
+testGraph.printEdges();
+
+console.log(pointD.neighbors);
 
 
 

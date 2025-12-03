@@ -3,21 +3,14 @@ import { Graph } from "./Graph.ts";
 
 const testGraph: Graph<string> = new Graph<string>();
 
-const pointA: GraphNode<string> = {
-  value: "A"
-}
-const pointB: GraphNode<string> = {
-  value: "B"
-}
-const pointC: GraphNode<string> = {
-  value: "C"
-}
-const pointD: GraphNode<string> = {
-  value: "D"
-}
-const edge1: GraphEdge<string> = testGraph.make_edge(pointA, pointB);
-const edge2: GraphEdge<string> = testGraph.make_edge(pointC, pointD);
-const edge3: GraphEdge<string> = testGraph.make_edge(pointA, pointC);
+const pointA = testGraph.makeNode("A");
+const pointB = testGraph.makeNode("B");
+const pointC = testGraph.makeNode("C");
+const pointD = testGraph.makeNode("D");
+
+const edge1: GraphEdge<string> = testGraph.makeEdge(pointA, pointB);
+const edge2: GraphEdge<string> = testGraph.makeEdge(pointC, pointD);
+const edge3: GraphEdge<string> = testGraph.makeEdge(pointA, pointC);
 
 
 testGraph.add_edge(edge1);

@@ -55,7 +55,13 @@ export class Graph<T> {
   edge factory 
   methods to make creating nodes and edges easier 
   */
-  make_edge(point1: GraphNode<T>, point2: GraphNode<T>) {
+  makeNode(node: T) {
+    const createdNode: GraphNode<T> = {
+      value: node
+    }
+    return createdNode;
+  }
+  makeEdge(point1: GraphNode<T>, point2: GraphNode<T>) {
     const createdEdge: GraphEdge<T> = {
       Point1: point1,
       Point2: point2

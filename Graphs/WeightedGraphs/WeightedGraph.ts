@@ -87,6 +87,46 @@ export class WeightedGraph<T> {
     }
   }
 
+
+  dijkstra(startNode: WeightedGraphNode<T>) {
+    /*
+      distances: map the best distances to each node 
+      previous: keep a list of where we came from for every node.
+      unvisited: keep a list of nodes we still need to visit.  
+    */
+    const distances = new Map<WeightedGraphNode<T>, number>();
+    const previous = new Map<WeightedGraphNode<T>, WeightedGraphNode<T> | null>();
+    const unvisited: WeightedGraphNode<T>[] = [];
+
+    for (const node of this._nodes) {
+      // if this is the startNode we know that the distance is zero. If it is not, we set the distances to infinity until we visit them.
+      node === startNode ? distances.set(node, 0) : distances.set(node, Infinity);
+      previous.set(node, null);
+      unvisited.push(node);
+    }
+
+    while (unvisited.length > 0) {
+      unvisited.sort((a, b) => distances.get(a)! - distances.get(b)!);
+      const closestNode = unvisited.shift();
+
+      for (const neighborObj of closestNode!.neighbors) {
+
+        const tempDistance = distances.get(closestNode!)! + neighborObj.weight!;
+        const currentDistance = distances.get(neighborObj.node)!;
+
+        if (tempDistance < currentDistance) {
+          distances.set(neighborObj.node, tempDistance);
+          previous.set(neighborObj.node, closestNode!);
+
+        }
+      }
+    }
+
+
+    return { distances, previous };
+  }
+
+
   /* Search methods 
   DFS
   BFS
@@ -154,6 +194,7 @@ export class WeightedGraph<T> {
   printNodes() {
     this._nodes.forEach(node => {
       console.log("node:", node.value)
+      console.log(node.neighbors);
     })
   }
 }

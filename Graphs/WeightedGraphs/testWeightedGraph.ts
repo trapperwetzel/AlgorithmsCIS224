@@ -17,6 +17,11 @@ const edge5: WeightedGraphEdge<string> = graph.makeEdge(nodeB, nodeE, 6);
 const edge6: WeightedGraphEdge<string> = graph.makeEdge(nodeC, nodeE, 3);
 const edge7: WeightedGraphEdge<string> = graph.makeEdge(nodeD, nodeE, 1);
 
+graph.add_node(nodeA);
+graph.add_node(nodeB);
+graph.add_node(nodeC);
+graph.add_node(nodeD);
+graph.add_node(nodeE);
 
 graph.add_edge(edge1);
 graph.add_edge(edge2);
@@ -25,5 +30,10 @@ graph.add_edge(edge4);
 graph.add_edge(edge5);
 graph.add_edge(edge6);
 graph.add_edge(edge7);
-graph.printEdges();
+
+
+const test = graph.dijkstra(nodeA);
+console.log(test);
+
+export default graph;
 

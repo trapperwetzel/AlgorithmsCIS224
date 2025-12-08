@@ -125,6 +125,38 @@ export class WeightedGraph<T> {
 
     return { distances, previous };
   }
+  prims(startNode: WeightedGraphNode<T>) {
+
+    const costs = new Map<WeightedGraphNode<T>, number>();
+    const parents = new Map<WeightedGraphNode<T>, WeightedGraphNode<T> | null>();
+    const unvisited: WeightedGraphNode<T>[] = [];
+
+    for (const node of this._nodes) {
+      if (node === startNode) {
+        costs.set(node, 0);
+      } else {
+        costs.set(node, Infinity);
+      }
+      parents.set(node, null);
+      unvisited.push(node);
+    }
+
+    while (unvisited.length > 0) {
+      unvisited.sort((a, b) => costs.get(a)! - costs.get(b)!);
+      const closestNode = unvisited.shift();
+      if (costs.get(closestNode!) === Infinity) break;
+      for (const neighborObj of closestNode!.neighbors) {
+        const edgeWeight = neighborObj.weight!;
+        if (unvisited.includes(neighborObj.node) && edgeWeight < costs.get(neighborObj.node)!) {
+          costs.set(neighborObj.node, edgeWeight);
+          parents.set(neighborObj.node, closestNode!);
+        }
+      }
+    }
+
+    return { parents };
+  }
+
 
 
   /* Search methods 

@@ -33,7 +33,9 @@ graph.add_edge(edge7);
 
 
 const test = graph.dijkstra(nodeA);
+const test2 = graph.prims(nodeA);
 console.log(test);
+console.log(test2);
 
 export default graph;
 

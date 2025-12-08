@@ -32,7 +32,7 @@ graph.add_edge(edge6);
 graph.add_edge(edge7);
 
 
-//graph.breadthFirstSearch(nodeA);
-graph.printEdges();
+graph.breadthFirstSearch(nodeA);
+graph.depthFirstSearch(nodeA);
 export default graph;
 

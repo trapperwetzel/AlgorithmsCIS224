@@ -227,33 +227,26 @@ export class WeightedGraph<T> {
     }
 
     costs.forEach((value, key) => {
-
       console.log("Traveling to", key.value, "costed", value);
-
     })
-
 
   }
 
   depthFirstSearch(startNode: WeightedGraphNode<T>): void {
-    const visitedNodes: WeightedGraphNode<T>[] = [];
-
+    const visited: WeightedGraphNode<T>[] = [];
+    visited.push(startNode);
     const dfsHelper = (helperNode: WeightedGraphNode<T>) => {
-      if (visitedNodes.includes(helperNode)) { return; }
-      else {
-        console.log("--------------------------------")
-        console.log("Visiting: ", helperNode.value);
-        console.log("--------------------------------")
-        visitedNodes.push(helperNode);
-      }
-
-      for (const neighbor of helperNode.neighbors) {
-        dfsHelper(neighbor.node)
+      console.log("Visiting: ", helperNode.value);
+      for (const tempNode of helperNode.neighbors) {
+        if (!visited.includes(tempNode.node)) {
+          visited.push(tempNode.node);
+          dfsHelper(tempNode.node);;
+        }
       }
 
     }
-
     dfsHelper(startNode);
+
 
   }
 

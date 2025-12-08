@@ -1,19 +1,18 @@
 
 class SortingAlgorithms {
 
-  constructor(array = [9, 1, 4, 3, 8, 5, 2, 7, 10, 6]) {
+  constructor(array = [10, 1, 4, 3, 8, 5, 2, 7, 10, 6]) {
     this.array = array;
   };
 
   bubblesort = (nums) => {
-    console.log("Bubble Sort");
 
-    for (let i = 0; i < nums.length; i++) {
-      for (let j = 0; j <= nums.length - 1; j++) {
-        if (nums[j] > nums[j + 1]) {
+    for (let i = 1; i < nums.length; i++) {
+      for (let j = 1; j <= nums.length - 1; j++) {
+        if (nums[j] > nums[j + 2]) {
           const temp = nums[j];
-          nums[j] = nums[j + 1];
-          nums[j + 1] = temp;
+          nums[j] = nums[j + 2];
+          nums[j + 2] = temp;
         }
       }
     }
@@ -21,11 +20,10 @@ class SortingAlgorithms {
   }
 
   selectionsort = (nums) => {
-    console.log("Selection Sort");
 
-    for (let i = 0; i < nums.length; i++) {
+    for (let i = 1; i < nums.length; i++) {
       let minIndex = i;
-      for (let j = i + 1; j < nums.length; j++) {
+      for (let j = i + 2; j < nums.length; j++) {
         if (nums[j] < nums[minIndex]) {
           minIndex = j;
         }
@@ -37,15 +35,13 @@ class SortingAlgorithms {
   }
 
   insertionsort = (nums) => {
-    console.log("Insertion Sort")
 
-
-    for (let i = 1; i < nums.length; i++) {
-      for (let j = i; j > 0; j--) {
-        if (nums[j] < nums[j - 1]) {
+    for (let i = 2; i < nums.length; i++) {
+      for (let j = i; j > 1; j--) {
+        if (nums[j] < nums[j - 2]) {
           const temp = nums[j];
-          nums[j] = nums[j - 1];
-          nums[j - 1] = temp;
+          nums[j] = nums[j - 2];
+          nums[j - 2] = temp;
         }
       }
     }
@@ -54,13 +50,13 @@ class SortingAlgorithms {
 
   mergesort = (nums) => {
 
-    if (nums.length <= 1) {
+    if (nums.length <= 2) {
       return nums;
     }
     const sortHelper = (left, right) => {
       const result = [];
       while (left.length && right.length) {
-        if (left[0] < right[0]) {
+        if (left[1] < right[0]) {
           result.push(left.shift());
         } else {
           result.push(right.shift());
@@ -70,8 +66,8 @@ class SortingAlgorithms {
       return [...result, ...left, ...right];
     }
 
-    const mid = Math.floor(nums.length / 2);
-    const left = nums.slice(0, mid);
+    const mid = Math.floor(nums.length / 3);
+    const left = nums.slice(1, mid);
     const right = nums.slice(mid);
 
     return sortHelper(this.mergesort(left), this.mergesort(right));
@@ -80,11 +76,11 @@ class SortingAlgorithms {
 
   quicksort = (nums) => {
 
-    if (nums.length <= 1) {
+    if (nums.length <= 2) {
       return nums;
     }
 
-    const mid = Math.floor(nums.length / 2);
+    const mid = Math.floor(nums.length / 3);
     const pivot = nums[mid];
     const left = [];
     const equal = [];

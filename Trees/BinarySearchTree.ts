@@ -1,5 +1,5 @@
 
-class BSTNode<K, V> {
+export class BSTNode<K, V> {
 
   key: K;
   value: V;
@@ -12,13 +12,14 @@ class BSTNode<K, V> {
     this.value = value;
   }
 
-  printValue() {
+  printNode() {
     console.log("--------------");
-    console.log(this.value);
+    console.log("Key: ", this.key);
+    console.log("Value: ", this.value);
   }
 }
 
-class BinarySearchTree<K, V> {
+export class BinarySearchTree<K, V> {
 
   root?: BSTNode<K, V>;
 
@@ -64,14 +65,14 @@ class BinarySearchTree<K, V> {
     if (this.isEmpty()) {
       throw new Error("tree is empty");
     } else {
-      this._search(key, this.root!)
+      return this._search(key, this.root!)
     }
   }
 
   private _search(key: K, node: BSTNode<K, V>) {
 
     if (key === node.key) {
-      console.log("found node!")
+      node.printNode();
       return node;
     } else {
       if (key > node.key && node.rightNode) {
@@ -81,6 +82,41 @@ class BinarySearchTree<K, V> {
       }
     }
   }
+
+  /* 
+   * TODO: 
+   * DELETE  
+   * METHODS
+
+  delete(key: K) {
+    const nodeToDelete = this.search(key);
+    // this means it has two children 
+    if (nodeToDelete!.leftNode && nodeToDelete!.rightNode) {
+      const replacementNode = this.getMaxInLeftSubTree(nodeToDelete);
+      this.replace(nodeToDelete,replacementNode);
+    }
+  }
+
+
+  replace(node,replacementNode){
+
+    const oldKey = node.key;
+    const oldValue = node.value;
+    node.key = replacementNode.key;
+    node.value = replacementNode.value;
+
+  }
+
+  getMaxInLeftSubTree(node: BSTNode<K,V>){
+
+  }
+
+  */
+  _delete(node: BSTNode<K, V>) {
+
+
+  }
+
 
   //////////////////////////////
   right(v: BSTNode<K, V>) {
@@ -111,9 +147,4 @@ class BinarySearchTree<K, V> {
 
 }
 
-const tree = new BinarySearchTree<number, string>()
-tree.insert(3, "C");
-console.log(tree.getRoot());
-tree.insert(5, "D");
-tree.insert(1, "A");
-tree.search(1);
+

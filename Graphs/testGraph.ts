@@ -1,6 +1,7 @@
 import type { GraphNode, GraphEdge } from "./Graph.ts";
 import { Graph } from "./Graph.ts";
 
+
 const testGraph: Graph<string> = new Graph<string>();
 
 const pointA: GraphNode<string> = testGraph.makeNode("A");
@@ -13,6 +14,7 @@ const edge1: GraphEdge<string> = testGraph.makeEdge(pointA, pointB);
 const edge2: GraphEdge<string> = testGraph.makeEdge(pointB, pointC);
 const edge3: GraphEdge<string> = testGraph.makeEdge(pointC, pointD);
 const edge4: GraphEdge<string> = testGraph.makeEdge(pointD, pointE);
+
 
 testGraph.add_edge(edge1);
 testGraph.add_edge(edge2);

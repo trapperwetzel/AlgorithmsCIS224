@@ -7,6 +7,7 @@ export type GraphEdge<T> = {
   Point2: GraphNode<T>
 }
 
+
 export class Graph<T> {
   private _nodes: GraphNode<T>[] = [];
   private _edges: GraphEdge<T>[] = [];

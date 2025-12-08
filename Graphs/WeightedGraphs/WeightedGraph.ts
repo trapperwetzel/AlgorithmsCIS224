@@ -156,7 +156,42 @@ export class WeightedGraph<T> {
 
     return { parents };
   }
+  kruskals() {
 
+    const sortedEdges = [...this._edges].sort((a, b) => a.weight! - b.weight!);
+
+    const clusterLeader = new Map<WeightedGraphNode<T>, WeightedGraphNode<T>>();
+
+    for (const node of this._nodes) {
+      clusterLeader.set(node, node);
+    }
+
+    const findLeader = (node: WeightedGraphNode<T>): WeightedGraphNode<T> => {
+      if (clusterLeader.get(node) === node) {
+        return node;
+      }
+      const leader = findLeader(clusterLeader.get(node)!);
+      clusterLeader.set(node, leader);
+      return leader;
+    };
+
+    const union = (node1: WeightedGraphNode<T>, node2: WeightedGraphNode<T>) => {
+      const leader1 = findLeader(node1);
+      const leader2 = findLeader(node2);
+      clusterLeader.set(leader1, leader2);
+    };
+
+    const mstEdges: WeightedGraphEdge<T>[] = [];
+
+    for (const edge of sortedEdges) {
+      if (findLeader(edge.Point1) !== findLeader(edge.Point2)) {
+        mstEdges.push(edge);
+        union(edge.Point1, edge.Point2);
+      }
+    }
+
+    return mstEdges;
+  }
 
 
   /* Search methods 

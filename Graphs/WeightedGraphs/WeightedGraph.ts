@@ -198,6 +198,43 @@ export class WeightedGraph<T> {
   DFS
   BFS
   */
+
+  breadthFirstSearch(startNode: WeightedGraphNode<T>): void {
+
+    const costs = new Map<WeightedGraphNode<T>, number>();
+    const _queue: WeightedGraphNode<T>[] = [];
+    const visited: WeightedGraphNode<T>[] = [];
+    costs.set(startNode, 0);
+    _queue.push(startNode);
+    visited.push(startNode);
+
+    while (_queue.length > 0) {
+
+      const currentNode = _queue.shift();
+      if (!currentNode) { throw new Error("No more nodes left"); }
+      const msg = "Visiting Node:";
+      console.log(msg, currentNode.value);
+
+      for (const nodeObj of currentNode.neighbors) {
+        if (visited.includes(nodeObj.node)) {
+          continue;
+        } else {
+          visited.push(nodeObj.node);
+          _queue.push(nodeObj.node);
+          costs.set(nodeObj.node, nodeObj.weight!);
+        }
+      }
+    }
+
+    costs.forEach((value, key) => {
+
+      console.log("Traveling to", key.value, "costed", value);
+
+    })
+
+
+  }
+
   depthFirstSearch(startNode: WeightedGraphNode<T>): void {
     const visitedNodes: WeightedGraphNode<T>[] = [];
 
